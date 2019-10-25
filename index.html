@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title></title>
+</head>
+
+<body>
+    <div id="insert">
+
+    </div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+        var queryUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key="
+        var apiKey = "IGVkU83BPeehRdsv2VOwreMiqfAniPcA"
+        var searchInput = "roosevelt";
+        var limit = "5"; //TODO:1,5,10
+        var beginUserInput = 1923; //TODO:begin_date=19600101
+        var endUserInput = ""; //TODO:end_date=19700101
+        var beginDate = `begin_date=${beginUserInput}0101`;
+        var endDate = `end_date=${endUserInput}1231`;
+        var searchTerm = `q=${searchInput}`;
+        var fullUrl =
+            if ();
+
+        $.ajax({
+            url: queryUrl + apiKey + "&" + searchTerm + "&" + beginDate + "&" + endDate,
+            method: "GET"
+
+        }).then(function(data) {
+            console.log(data);
+            for (var i = 0; i < limit; i++) {
+                var headline = data.response.docs[i].headline.main;
+                var byline = data.response.docs[i].byline.original;
+                var articleUrl = data.response.docs[i].web_url;
+                console.log(headline, byline);
+                console.log(articleUrl)
+
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>
