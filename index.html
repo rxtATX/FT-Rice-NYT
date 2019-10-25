@@ -30,16 +30,30 @@
         var apiKey = "IGVkU83BPeehRdsv2VOwreMiqfAniPcA"
         var searchInput = "roosevelt";
         var limit = "5"; //TODO:1,5,10
-        var beginUserInput = 1923; //TODO:begin_date=19600101
+        var beginUserInput = "1900"; //TODO:begin_date=19600101
         var endUserInput = ""; //TODO:end_date=19700101
         var beginDate = `begin_date=${beginUserInput}0101`;
         var endDate = `end_date=${endUserInput}1231`;
         var searchTerm = `q=${searchInput}`;
-        var fullUrl =
-            if ();
+        var fullUrl;
+
+        if (searchInput) {
+            fullUrl = queryUrl + apiKey + "&" + searchTerm;
+            if (beginUserInput) {
+
+                fullUrl = queryUrl + apiKey + "&" + searchTerm + "&" + beginDate;
+                if (endUserInput) {
+                    fullUrl = queryUrl + apiKey + "&" + searchTerm + "&" + beginDate + "&" + endDate;
+                }
+            } else if (endUserInput) {
+                fullUrl = queryUrl + apiKey + "&" + searchTerm + "&" + endDate;
+
+            }
+        };
+
 
         $.ajax({
-            url: queryUrl + apiKey + "&" + searchTerm + "&" + beginDate + "&" + endDate,
+            url: fullUrl,
             method: "GET"
 
         }).then(function(data) {
@@ -48,8 +62,7 @@
                 var headline = data.response.docs[i].headline.main;
                 var byline = data.response.docs[i].byline.original;
                 var articleUrl = data.response.docs[i].web_url;
-                console.log(headline, byline);
-                console.log(articleUrl)
+
 
             }
 
